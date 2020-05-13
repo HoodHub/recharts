@@ -1798,6 +1798,7 @@ const generateCategoricalChart = ({
         let activePoint, basePoint;
 
         if (tooltipAxis.dataKey && !tooltipAxis.allowDuplicatedCategory) {
+          console.log('not points');
           // number transform to string
           const specifiedKey =
             typeof tooltipAxis.dataKey === 'function'
@@ -1806,9 +1807,14 @@ const generateCategoricalChart = ({
           activePoint = findEntryInArray(points, specifiedKey, activeLabel);
           basePoint = isRange && baseLine && findEntryInArray(baseLine, specifiedKey, activeLabel);
         } else {
+          console.log('points');
           activePoint = points[activeTooltipIndex];
           basePoint = isRange && baseLine && baseLine[activeTooltipIndex];
         }
+
+        // console.log(`activePoint: ${activePoint.payload.metricId}`);
+        console.log(activePoint);
+        console.log(`activeTooltipIndex: ${activeTooltipIndex}`);
 
         if (!_.isNil(activePoint)) {
           return [
