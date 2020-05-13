@@ -10,6 +10,7 @@ import Cross from '../shape/Cross';
 import Sector from '../shape/Sector';
 import Dot from '../shape/Dot';
 import Rectangle from '../shape/Rectangle';
+import moment from "moment";
 
 import {
   findAllByType,
@@ -47,6 +48,7 @@ import {
   getDomainOfDataByKey,
   parseSpecifiedDomain,
   parseDomainOfCategoryAxis,
+  closestIndex,
 } from '../util/ChartUtils';
 import { detectReferenceElementsDomain } from '../util/DetectReferenceElementsDomain';
 import { inRangeOfSector, polarToCartesian } from '../util/PolarUtils';
@@ -1174,8 +1176,18 @@ const generateCategoricalChart = ({
             }),
           });
         } else if (!_.isNil(data.activeTooltipIndex)) {
-          const { chartX, chartY, activeTooltipIndex } = data;
+          const { chartX, chartY, activeLabel: labl } = data;
           const { offset, tooltipTicks } = this.state;
+
+          const activeValue = moment(labl).valueOf();
+
+          const num = closestIndex(
+            tooltipTicks.map(({ value }) => value),
+            activeValue,
+          );
+
+          const activeTooltipIndex = num;
+
           if (!offset) {
             return;
           }
