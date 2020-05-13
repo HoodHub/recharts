@@ -1,6 +1,7 @@
 import React, { Component, cloneElement, isValidElement, createElement } from 'react';
 import classNames from 'classnames';
 import _ from 'lodash';
+import moment from 'moment';
 import Surface from '../container/Surface';
 import Layer from '../container/Layer';
 import Tooltip from '../component/Tooltip';
@@ -10,7 +11,6 @@ import Cross from '../shape/Cross';
 import Sector from '../shape/Sector';
 import Dot from '../shape/Dot';
 import Rectangle from '../shape/Rectangle';
-import moment from "moment";
 
 import {
   findAllByType,
@@ -48,7 +48,7 @@ import {
   getDomainOfDataByKey,
   parseSpecifiedDomain,
   parseDomainOfCategoryAxis,
-  closestIndex,
+  bsearchClosest,
 } from '../util/ChartUtils';
 import { detectReferenceElementsDomain } from '../util/DetectReferenceElementsDomain';
 import { inRangeOfSector, polarToCartesian } from '../util/PolarUtils';
@@ -1181,10 +1181,9 @@ const generateCategoricalChart = ({
 
           const activeValue = moment(labl).valueOf();
 
-          const num = closestIndex(
-            tooltipTicks.map(({ value }) => value),
-            activeValue,
-          );
+          const num = bsearchClosest(tooltipTicks.map(({ value }) => moment(value).valueOf()).sort(), activeValue);
+
+          console.log(num);
 
           const activeTooltipIndex = num;
 
