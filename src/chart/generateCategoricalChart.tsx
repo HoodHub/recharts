@@ -1211,15 +1211,13 @@ const generateCategoricalChart = ({
               }
             : originCoordinate;
 
-          const test = {
+          this.setState({
             ...data,
             activeLabel,
             activeCoordinate,
             activePayload,
             activeTooltipIndex,
-          };
-
-          this.setState(test);
+          });
         } else {
           this.setState(data);
         }
