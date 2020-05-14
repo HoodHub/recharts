@@ -9,6 +9,15 @@
 [![npm downloads](https://img.shields.io/npm/dm/recharts.svg?style=flat-square)](https://www.npmjs.com/package/recharts)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/recharts/recharts/raw/master/LICENSE)
 
+# FORK NOTICE
+
+Please note that this is a fork of recharts with the very specific and esoteric change of making sync'd charts sync off of the string timestamp value of the X axis rather than X index. The sync Ids will only work for you if your data has an ISO string X axis value.
+
+If that's your use case, then this fork should be helpful.
+
+I'm also not making a lot of attempts to keep this up to date; I'm hoping the recharts team supports the functionality we need soon.
+
+
 ## Introduction
 
 Recharts is a **Redefined** chart library built with [React](https://facebook.github.io/react/) and [D3](http://d3js.org).
