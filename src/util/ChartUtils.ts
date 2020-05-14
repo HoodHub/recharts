@@ -1118,7 +1118,7 @@ type compareFn<T> = (a: T, b: T) => number;
 export function bsearchClosest<T>(x: T[], v: T, fn: compareFn<T> = null): number {
   const rfn = fn || cmp;
   let i: number, I: number;
-  for (i = 0, I = x.length; i < I;) {
+  for (i = 0, I = x.length; i < I; ) {
     const m = (i + I) >>> 1;
     const c = rfn(x[m], v);
     if (c < 0) i = m + 1;
