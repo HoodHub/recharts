@@ -1125,5 +1125,5 @@ export function bsearchClosest<T>(x: T[], v: T, fn: compareFn<T> = null): number
     else if (c > 0) I = m;
     else return m;
   }
-  return i;
+  return i - 1;
 }

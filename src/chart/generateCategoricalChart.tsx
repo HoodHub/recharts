@@ -1190,7 +1190,13 @@ const generateCategoricalChart = ({
             activeValue,
           );
 
-          const { index: realIndex } = stortedTips[num];
+          let realIndex;
+
+          try {
+            ({ index: realIndex } = stortedTips[num]);
+          } catch (err) {
+            realIndex = 0;
+          }
 
           const activeTooltipIndex = realIndex;
 
