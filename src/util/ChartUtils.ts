@@ -1118,7 +1118,7 @@ type compareFn<T> = (a: T, b: T) => number;
 export function bsearchClosest<T>(x: T[], v: T, fn: compareFn<T> = null): number {
   const rfn = fn || cmp;
   let i: number, I: number;
-  for (i = 0, I = x.length; i < I; ) {
+  for (i = 0, I = x.length; i < I;) {
     const m = (i + I) >>> 1;
     const c = rfn(x[m], v);
     if (c < 0) i = m + 1;
@@ -1127,28 +1127,3 @@ export function bsearchClosest<T>(x: T[], v: T, fn: compareFn<T> = null): number
   }
   return i;
 }
-
-// export function closestIndex(arr: number[], x: number) {
-//   /* lb is the lower bound and ub the upper bound defining a subarray or arr. */
-//   let lb = 0;
-//   let ub = arr.length - 1;
-//   /* We loop as long as x is in inside our subarray and the length of our subarray is greater than 0 (lb < ub). */
-//   while (ub - lb > 1) {
-//     const m = Math.round((ub - lb + 1) / 2); // The middle value
-//     /* Depending on the middle value of our subarray, we update the bound. */
-//     if (arr[lb + m] > x) {
-//       ub = lb + m;
-//     } else if (arr[lb + m] < x) {
-//       lb += m;
-//     } else {
-//       ub = lb + m;
-//       lb += m;
-//     }
-//   }
-//   /* After the loop, we know that the closest value is either the one at the lower or upper bound (may be the same if x is in arr). */
-//   let clst = lb;
-//   if (Math.abs(arr[lb] - x) > Math.abs(arr[ub] - x)) {
-//     clst = ub;
-//   }
-//   return clst; // If you want the value instead of the index, return arr[clst]
-// }
