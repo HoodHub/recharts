@@ -1182,7 +1182,6 @@ const generateCategoricalChart = ({
           const activeValue = moment(labl).valueOf();
 
           const stortedTips = tooltipTicks
-            // .filter(tip => tip)
             .map(({ value }, index) => ({ value: moment(value).valueOf(), index }))
             .sort((a, b) => a.value - b.value);
 
@@ -1193,13 +1192,7 @@ const generateCategoricalChart = ({
 
           const { index: realIndex } = stortedTips[num];
 
-          console.log(data);
-
           const activeTooltipIndex = realIndex;
-
-          console.log(tooltipTicks);
-          console.log(num);
-          console.log(realIndex);
 
           if (!offset) {
             return;
@@ -1223,12 +1216,8 @@ const generateCategoricalChart = ({
             activeLabel,
             activeCoordinate,
             activePayload,
-            chartX: 200,
-            chartY: 10,
+            activeTooltipIndex,
           };
-
-          console.log(test);
-          console.log('--done--');
 
           this.setState(test);
         } else {
@@ -1798,7 +1787,6 @@ const generateCategoricalChart = ({
         let activePoint, basePoint;
 
         if (tooltipAxis.dataKey && !tooltipAxis.allowDuplicatedCategory) {
-          console.log('not points');
           // number transform to string
           const specifiedKey =
             typeof tooltipAxis.dataKey === 'function'
@@ -1807,14 +1795,9 @@ const generateCategoricalChart = ({
           activePoint = findEntryInArray(points, specifiedKey, activeLabel);
           basePoint = isRange && baseLine && findEntryInArray(baseLine, specifiedKey, activeLabel);
         } else {
-          console.log('points');
           activePoint = points[activeTooltipIndex];
           basePoint = isRange && baseLine && baseLine[activeTooltipIndex];
         }
-
-        // console.log(`activePoint: ${activePoint.payload.metricId}`);
-        console.log(activePoint);
-        console.log(`activeTooltipIndex: ${activeTooltipIndex}`);
 
         if (!_.isNil(activePoint)) {
           return [
